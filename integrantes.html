@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Integrantes</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="estilos.css" rel="stylesheet" type="text/css" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        min-height: 100vh;
+        width: 100vw;
+        box-sizing: border-box;
+        opacity: 0;
+        transform: translateY(60px);
+        animation: paginaSube 1.2s ease-out forwards;
+        background: url("img/532112061.webp") no-repeat center center fixed;
+        background-size: cover;
+      }
+      @keyframes paginaSube {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      body {
+        min-height: 100vh;
+        width: 100vw;
+        box-sizing: border-box;
+        color: #fff;
+        font-family: "Montserrat", Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+      .integrantes-hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        text-align: center;
+        padding: 0;
+        width: 100vw;
+        min-height: 100vh;
+        background: rgba(20, 20, 40, 0.55);
+      }
+      .integrantes-hero h1 {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 3.5em;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 0.2em;
+        text-shadow: 2px 2px 16px #000a, 0 0 18px #ffcc00aa;
+        color: #ffeb3b;
+        background: rgba(30, 30, 30, 0.25);
+        border-radius: 18px;
+        padding: 0.2em 1em;
+        display: inline-block;
+      }
+      .integrantes-hero p {
+        width: 70vw;
+        max-width: 700px;
+        margin: 0 auto 2em auto;
+        font-size: 1.15em;
+        color: #fffde4;
+        background: linear-gradient(90deg, #232526cc 60%, #ffcc00cc 100%);
+        padding: 18px 0;
+        border-radius: 0 0 40px 40px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-shadow: 2px 2px 12px #000a, 0 0 8px #ffcc00aa;
+        transition: background 0.7s;
+        box-shadow: 0 4px 24px #0006;
+      }
+      .integrantes-hero p:hover {
+        background: linear-gradient(90deg, #ffcc00cc 40%, #232526cc 100%);
+      }
+      .integrantes-carrusel {
+        position: relative;
+        width: 100vw;
+        min-height: 420px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      .integrante-card {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: 0 auto;
+        z-index: 1;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        flex-direction: column;
+        align-items: center;
+        border-radius: 24px;
+        box-shadow: 0 8px 32px #000a, 0 0 0 4px #ffcc0033;
+        padding: 60px 32px 52px 32px;
+        width: 370px;
+        max-width: 90vw;
+        min-height: 520px;
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+        background-color: rgba(40, 40, 50, 0.82);
+      }
+      .integrante-card.active {
+        display: flex;
+        opacity: 1;
+        z-index: 2;
+        position: relative;
+        transform: translateX(0);
+      }
+      .integrante-card.prev {
+        display: flex;
+        opacity: 0;
+        z-index: 1;
+        transform: translateX(-100%);
+      }
+      .integrante-foto {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 22px;
+        border: 5px solid #ffcc00cc;
+        box-shadow: 0 4px 24px #000a;
+        background: #222;
+      }
+      .integrante-nombre {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #ffcc00;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 8px #0008;
+      }
+      .integrante-rol {
+        font-size: 1.1em;
+        color: #fff;
+        margin-bottom: 12px;
+        font-style: italic;
+        text-shadow: 1px 1px 8px #0008;
+      }
+      .caracteristicas {
+        font-size: 1em;
+        color: #ffe;
+        margin-bottom: 0;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 10px;
+        padding: 10px 8px;
+        box-shadow: 0 2px 8px #0002;
+        text-align: left;
+        line-height: 1.5;
+      }
+      footer {
+        margin-top: 40px;
+      }
+      @media (max-width: 600px) {
+        .integrante-card {
+          width: 95vw;
+          padding: 20px 4vw;
+        }
+        .integrante-foto {
+          width: 120px;
+          height: 120px;
+        }
+        .integrantes-hero h1 {
+          font-size: 2em;
+        }
+        .integrantes-hero p {
+          font-size: 1.1em;
+          padding: 18px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+     <video autoplay loop muted playsinline id="video-fondo" style="position: fixed; right: 0; bottom: 0; min-width: 100vw; min-height: 100vh; width: auto; height: auto; z-index: -1; object-fit: cover;">
+        <source src="img/WhatsApp Video 2025-09-30 at 10.15.12.mp4" type="video/mp4">
+        Tu navegador no soporta el video de fondo.
+      </video>
+    <div class="integrantes-hero">
+      <h1>Integrantes</h1>
+      <p>
+        Este equipo está conformado por personas apasionadas por aprender,
+        innovar y aportar soluciones. Nuestra fuerza está en la diversidad de
+        ideas y en la convicción de que juntos podemos alcanzar grandes
+        resultados.
+      </p>
+      <div class="integrantes-carrusel">
+        <div class="integrante-card" style="background-image:url('img/ChatGPT Image 30 sept 2025, 11_15_21.png');">
+          <img class="integrante-foto" src="img/WhatsApp Image 2025-09-24 at 20.06.39.jpeg" alt="Juan Sebastian Cortes Velandia"/>
+          <div class="integrante-nombre">Juan Sebastian Cortes Velandia</div>
+          <div class="integrante-rol">Investigador</div>
+          <div class="caracteristicas">
+            Curiosidad y pensamiento crítico.<br />
+            Capacidad de análisis y síntesis de información.<br />
+            Organización en la búsqueda de datos confiables.<br />
+            Rigurosidad y objetividad.<br />
+            Comunicación clara de resultados.
+          </div>
+        </div>
+        <div class="integrante-card" style="background-image:url('img/Mercurio sobre un fondo estrellado.png');">
+          <img class="integrante-foto" src="img/WhatsApp Image 2025-09-27 at 10.57.40.jpeg" alt="Juan Diego Moreno Ballen"/>
+          <div class="integrante-nombre">Juan Diego Moreno Ballén</div>
+          <div class="integrante-rol">Gestor de redes sociales</div>
+          <div class="caracteristicas">
+            Creatividad para generar contenido atractivo.<br />
+            Conocimiento de plataformas digitales y algoritmos.<br />
+            Habilidad para interactuar con la comunidad.<br />
+            Estrategia de marketing digital.<br />
+            Capacidad de análisis de métricas y tendencias.
+          </div>
+        </div>
+        <div class="integrante-card" style="background-image:url('img/ChatGPT Image 30 sept 2025, 11_12_23.png');">
+          <img class="integrante-foto" src="img/WhatsApp Image 2025-09-27 at 10.57.40 (1).jpeg" alt="Sergio Alejandro Espinel Hernandez"/>
+          <div class="integrante-nombre">Sergio Alejandro Espinel Hernandez</div>
+          <div class="integrante-rol">Programador</div>
+          <div class="caracteristicas">
+            Pensamiento lógico y analítico.<br />
+            Dominio de lenguajes de programación.<br />
+            Paciencia y atención al detalle.<br />
+            Capacidad para resolver problemas técnicos.<br />
+            Trabajo en conjunto con diseñadores e investigadores.
+          </div>
+        </div>
+        <div class="integrante-card" style="background-image:url('img/ChatGPT Image 30 sept 2025, 11_22_41.png');">
+          <img class="integrante-foto" src="img/WhatsApp Image 2025-09-27 at 10.57.40 (2).jpeg" alt="Nicole Dayana Gamez Bermudez"/>
+          <div class="integrante-nombre">Nicole Dayana Gámez Bermúdez</div>
+          <div class="integrante-rol">Diseñadora artística</div>
+          <div class="caracteristicas">
+            Imaginación y expresión personal.<br />
+            Habilidad en técnicas de ilustración, dibujo o arte digital.<br />
+            Capacidad de representar ideas abstractas de forma visual.<br />
+            Sensibilidad estética y cultural.<br />
+            Aporte de originalidad y estilo propio al proyecto.
+          </div>
+        </div>
+        <div class="integrante-card" style="background-image:url('img/ChatGPT Image 30 sept 2025, 11_08_07.png');">
+          <img class="integrante-foto" src="img/WhatsApp Image 2025-09-29 at 20.44.33.jpeg" alt="Juan Manuel Bonilla Jimenez"/>
+          <div class="integrante-nombre">Juan Manuel Bonilla Jimenez</div>
+          <div class="integrante-rol">Líder del proyecto</div>
+          <div class="caracteristicas">
+            Capacidad para tomar decisiones.<br />
+            Habilidad para motivar y guiar al equipo.<br />
+            Comunicación clara y efectiva.<br />
+            Organización y visión estratégica.<br />
+            Resolución de conflictos.
+          </div>
+        </div>
+        <div class="integrante-card" style="background-image:url('img/ChatGPT Image 30 sept 2025, 11_40_20.png');">
+          <img class="integrante-foto" src="img/WhatsApp Image 2025-09-29 at 09.00.53.jpeg" alt="Samuel Antonio Niño Cardenas"/>
+          <div class="integrante-nombre">Samuel Antonio Niño Cardenas</div>
+          <div class="integrante-rol">Programador web</div>
+          <div class="caracteristicas">
+            Dominio de lenguajes como HTML, CSS, JavaScript.<br />
+            Conocimiento de bases de datos y servidores.<br />
+            Capacidad para crear sitios funcionales y atractivos.<br />
+            Optimización de la experiencia del usuario (UX).<br />
+            Adaptación a nuevas tecnologías y frameworks.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sección adicional para alargar la página -->
+    <section style="min-height: 350px; width: 100vw; background: rgba(30,30,40,0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 40px;">
+      <h2 style="color: #ffcc00; font-size: 2em; margin-bottom: 0.5em; text-shadow: 1px 1px 8px #0008;">¿Por qué elegimos este equipo?</h2>
+      <p style="max-width: 700px; color: #fffde4; font-size: 1.2em; text-align: center; background: rgba(40,40,50,0.5); border-radius: 18px; padding: 1.5em 2em; box-shadow: 0 4px 24px #0006;">
+        Creemos que la colaboración y la diversidad de habilidades son la clave para lograr proyectos exitosos. Cada integrante aporta una perspectiva única y valiosa, permitiendo que el equipo crezca y se adapte a cualquier reto. Juntos, no solo compartimos conocimientos, sino también valores y metas comunes.
+      </p>
+    </section>
+    <div style="height: 80px;"></div>
+    <footer>
+      <nav>
+        <ul class="menuinferior">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="integrantes.html">Reto</a></li>
+          <li><a href="orrery.html">Integrantes</a></li>
+          <li><a href="galeria.html">Tormentas</a></li>
+          <li><a href="https://sdo.gsfc.nasa.gov/data/">Planetas</a></li>
+        </ul>
+      </nav>
+    </footer>
+    <script>
+      const cards = document.querySelectorAll(".integrante-card");
+      let current = 0;
+      let prev = null;
+
+      function showCard(index, prevIndex = null) {
+        cards.forEach((card, i) => {
+          card.classList.remove("active", "prev");
+          if (i === index) {
+            card.classList.add("active");
+          } else if (i === prevIndex) {
+            card.classList.add("prev");
+          }
+        });
+      }
+
+      showCard(current);
+
+      setInterval(() => {
+        prev = current;
+        current = (current + 1) % cards.length;
+        showCard(current, prev);
+      }, 3000);
+    </script>
+  </body>
+</html>
