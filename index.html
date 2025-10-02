@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tu hogar en el espacio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      /* ---------- ESTILO APPLE ELEGANTE ---------- */
+      html {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        color: #fff;
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        background: #000;
+        overflow-x: hidden;
+      }
+
+      /* NAVBAR */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(0,0,0,0.6);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(12px);
+      }
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.8rem 1.5rem;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.8rem;
+        margin: 0;
+        padding: 0;
+      }
+      nav ul li a {
+        text-decoration: none;
+        color: #f5f5f7;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+      nav ul li a:hover {
+        color: #0071e3;
+      }
+
+      /* HERO */
+      .hero {
+        text-align: center;
+        padding: 7rem 1rem 5rem 1rem;
+        z-index: 1;
+        position: relative;
+      }
+      .hero h1 {
+        font-size: 3.2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 0 18px #000;
+        letter-spacing: -0.5px;
+      }
+      .hero p {
+        font-size: 1.3rem;
+        color: #e2e2e2;
+        max-width: 650px;
+        margin: 0 auto 2.5rem auto;
+        line-height: 1.8;
+      }
+
+      /* SECCIONES */
+      .section {
+        padding: 5rem 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .columns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        justify-content: center;
+      }
+      .column {
+        flex: 1 1 350px;
+        background: rgba(0,0,0,0.55);
+        padding: 25px;
+        border-radius: 14px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .column:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      }
+      .columns h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+        color: #ffeb3b;
+      }
+
+      /* FOOTER */
+      footer {
+        background: rgba(0,0,0,0.8);
+        border-top: 1px solid rgba(255,255,255,0.15);
+        padding: 2.5rem 1rem;
+        color: #aaa;
+        text-align: center;
+        font-size: 0.95rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* BOTONES */
+      .btn-primary {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        background: #0071e3;
+        border: none;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background 0.3s, transform 0.2s;
+      }
+      .btn-primary:hover {
+        background: #005bb5;
+        transform: translateY(-3px);
+      }
+
+      /* ---------- VIDEO DE FONDO ---------- */
+      #video-fondo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100vw;
+        min-height: 100vh;
+        width: auto;
+        height: auto;
+        z-index: -1;
+        object-fit: cover;
+        background: #000;
+      }
+
+      /* ---------- CINTA DE CINE ---------- */
+      .imagenes {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 18px #000a;
+        height: 500px;
+        width: 320px;
+        background: #111;
+        margin: auto;
+      }
+      .cinta {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        animation: moverVertical 20s linear infinite;
+      }
+      .cinta img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 6px solid #000;
+        box-shadow: 0 0 12px #ffeb3b88;
+      }
+      @keyframes moverVertical {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+      }
+      .imagenes:hover .cinta {
+        animation-play-state: paused;
+      }
+      .controles {
+        margin-top: 15px;
+        text-align: center;
+      }
+      .controles button {
+        background: #0071e3;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        padding: 8px 16px;
+        margin: 0 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .controles button:hover {
+        background: #005bb5;
+      }
+
+      /* ---------- BOTÓN ANIMADO (Uiverse) ---------- */
+      .type--C {
+        --line_color: #00135c;
+        --back_color: #defffa;
+      }
+      .button {
+        position: relative;
+        z-index: 0;
+        width: 240px;
+        height: 56px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--line_color);
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+      }
+      .button__text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+      .button::before,
+      .button::after,
+      .button__text::before,
+      .button__text::after {
+        content: "";
+        position: absolute;
+        height: 3px;
+        border-radius: 2px;
+        background: var(--line_color);
+        transition: all 0.5s ease;
+      }
+      .button::before { top: 0; left: 54px; width: calc(100% - 56px * 2 - 16px); }
+      .button::after { top: 0; right: 54px; width: 8px; }
+      .button__text::before { bottom: 0; right: 54px; width: calc(100% - 56px * 2 - 16px); }
+      .button__text::after { bottom: 0; left: 54px; width: 8px; }
+      .button__line {
+        position: absolute;
+        top: 0;
+        width: 56px;
+        height: 100%;
+        overflow: hidden;
+      }
+      .button__line::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 150%;
+        height: 100%;
+        box-sizing: border-box;
+        border-radius: 300px;
+        border: solid 3px var(--line_color);
+      }
+      .button__line:nth-child(1),
+      .button__line:nth-child(1::before) { left: 0; }
+      .button__line:nth-child(2),
+      .button__line:nth-child(2::before) { right: 0; }
+      .button:hover { letter-spacing: 6px; }
+      .button:hover::before,
+      .button:hover .button__text::before { width: 8px; }
+      .button:hover::after,
+      .button:hover .button__text::after { width: calc(100% - 56px * 2 - 16px); }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .hero h1 { font-size: 2.3rem; }
+        .hero p { font-size: 1.1rem; }
+        nav ul { gap: 1rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- VIDEO DE FONDO -->
+    <video autoplay loop muted playsinline id="video-fondo">
+      <source src="img/WhatsApp Video 2025-09-30 at 10.15.12.mp4" type="video/mp4">
+      Tu navegador no soporta el video de fondo.
+    </video>
+
+    <!-- NAVBAR -->
+    <header>
+      <nav>
+        <div class="logo">
+          <img src="img/WhatsApp Image 2025-09-14 at 16.39.04.jpeg" alt="Logo" style="height: 40px; border-radius:6px;" />
+        </div>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="integrantes.html">Integrantes</a></li>
+          <li><a href="orrery.html">Teoría</a></li>
+          <li><a href="galeria.html">Tormentas</a></li>
+          <li><a href="https://sdo.gsfc.nasa.gov/data/">Planetas</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Tu hogar en el espacio: El creador de diseños de hábitat</h1>
+      <p>Crea, prueba y visualiza hábitats espaciales con facilidad y estilo.</p>
+      <a href="integrantes.html" class="button type--C">
+        <div class="button__line"></div>
+        <div class="button__line"></div>
+        <span class="button__text">EXPLORAR</span>
+        <div class="button__drow1"></div>
+        <div class="button__drow2"></div>
+      </a>
+    </section>
+
+    <!-- SECCIÓN PRINCIPAL -->
+    <section class="section">
+      <div class="columns">
+        <div class="column">
+          <h2>Visión de la NASA</h2>
+          <p>
+            La NASA planea repatriar humanos a la Luna y permitir una presencia sostenida allí mediante la campaña Artemis.  
+            La Luna servirá como campo de pruebas para tecnologías y enfoques operativos que servirán de base para futuras misiones tripuladas a Marte.  
+            Los hábitats espaciales pueden albergar tripulaciones en la órbita lunar, la superficie de Marte o incluso más allá.
+          </p>
+        </div>
+        <div class="column">
+          <div class="imagenes">
+            <div class="cinta">
+              <img src="img/nasa-fotografía-mexico-espacio.webp" alt="Luna" />
+              <img src="img/WhatsApp Image 2025-09-30 at 13.24.53.jpeg" alt="" />
+              <img src="img/WhatsApp Image 2025-09-30 at 14.29.14.jpeg" alt="Saturno" />
+              <img src="img/ChatGPT Image 30 sept 2025, 07_08_53 p.m..png" alt="Tierra" />
+            </div>
+          </div>
+          <div class="controles">
+            <button id="masRapido">⏩</button>
+            <button id="masLento">⏪</button>
+            <button id="pausa">⏸️</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      &copy; 2025 Tu proyecto espacial. Todos los derechos reservados.
+    </footer>
+
+    <!-- SCRIPT DE LA CINTA -->
+    <script>
+      const cinta = document.querySelector(".cinta");
+      cinta.innerHTML += cinta.innerHTML;
+
+      let velocidad = 20;
+      const imagenes = document.querySelector(".cinta");
+
+      function actualizarVelocidad() {
+        imagenes.style.animation = `moverVertical ${velocidad}s linear infinite`;
+      }
+      actualizarVelocidad();
+
+      document.getElementById("masRapido").addEventListener("click", () => {
+        if (velocidad > 5) velocidad -= 5;
+        actualizarVelocidad();
+      });
+      document.getElementById("masLento").addEventListener("click", () => {
+        velocidad += 5;
+        actualizarVelocidad();
+      });
+      document.getElementById("pausa").addEventListener("click", () => {
+        if (imagenes.style.animationPlayState === "paused") {
+          imagenes.style.animationPlayState = "running";
+        } else {
+          imagenes.style.animationPlayState = "paused";
+        }
+      });
+    </script>
+  </body>
+</html>
+
